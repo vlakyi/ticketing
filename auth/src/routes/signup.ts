@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import jwt from 'jsonwebtoken';
 
 // Validation
 import { body, validationResult } from 'express-validator';
@@ -37,7 +38,19 @@ router.post('/api/users/signup', [
     const user = User.build({ email, password });
     await user.save();
 
-    res.status(201).send(user);
+    // Generate JWT
+
+    const userJwt = jwt.sign({
+      id: user.id,
+      email: user.email
+    }, process.env.JWT_KEY!);   // existance of this variable was handled inside index.ts file
+
+    // Store it on session object
+    req.session = {
+      jwt: userJwt
+    };
+
+    res.status(201).send({ user });
   });
 
 export { router as signupRouter };
