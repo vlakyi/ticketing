@@ -1,10 +1,11 @@
 import 'bootstrap/dist/css/bootstrap.css';
 import createAxios from '../api/createAxios';
+import Header from '../components/Header/Header';
 
 const AppComponent = ({ Component, pageProps, currentUser }) => {
   return (
     <div>
-      <h1>Header!</h1>
+      <Header currentUser={currentUser} />
       <Component {...pageProps} />
     </div>
   );
