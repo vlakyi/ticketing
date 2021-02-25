@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
 
 const useRequest = ({ url, method, body, onSuccess }) => {
   const [errors, setErrors] = useState(null);
