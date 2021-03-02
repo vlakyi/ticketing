@@ -8,7 +8,7 @@ import { signoutRouter } from './routes/signout';
 import { signupRouter } from './routes/signup';
 
 // Middlewares
-import { errorHandler } from './middlewares/error-handler';
+import { errorHandler } from '@vlakyi-org/common';
 import cookieSession from 'cookie-session';
 
 const app = express();
