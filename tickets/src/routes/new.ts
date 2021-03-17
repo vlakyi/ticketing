@@ -1,6 +1,8 @@
 import express, { Request, Response } from 'express';
 import { requireAuth, validateRequest } from '@vlakyi-org/common';
 import { Ticket } from '../models/ticket';
+import { TicketCreatedPublisher } from '../nats/publishers/ticket-created-publisher';
+import { natsWrapper } from '../nats/nats-wrapper';
 
 // Middlewares
 import { body } from 'express-validator';
@@ -26,6 +28,13 @@ router.post('/api/tickets',
   });
 
   await ticket.save();
+
+  new TicketCreatedPublisher(natsWrapper.client).publish({
+    id: ticket.id,
+    title: ticket.title,
+    price: ticket.price,
+    userId: ticket.userId
+  });
 
   res.status(201).send(ticket);
 });
