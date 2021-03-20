@@ -1,6 +1,8 @@
 import express, { Request, Response } from 'express';
 import { NotAuthorizedError, NotFoundError, requireAuth, validateRequest } from '@vlakyi-org/common';
 import { Order, OrderStatus } from '../models/order';
+import { OrderCancelledPublisher } from '../nats/events/publishers/order-cancelled-publisher';
+import { natsWrapper } from '../nats/nats-wrapper';
 import { param } from 'express-validator';
 import mongoose from 'mongoose';
 
@@ -30,6 +32,12 @@ router.patch('/api/orders/:orderId',
     await order.save();
 
     // publishing an event saying this was cancelled! 
+    new OrderCancelledPublisher(natsWrapper.client).publish({
+      id: order.id,
+      ticket: {
+        id: order.ticket.id
+      }
+    });
 
     res.status(204).send(order);
   });
