@@ -2,6 +2,10 @@ import express, { json } from 'express';
 import 'express-async-errors';
 
 // Routes
+import { cancelOrderRouter } from './routes/cancel';
+import { indexOrderRouter } from './routes/index';
+import { newOrderRouter } from './routes/new';
+import { showOrderRouter } from './routes/show';
 
 // Middlewares
 import { errorHandler, currentUser } from '@vlakyi-org/common';
@@ -20,6 +24,10 @@ app.use(cookieSession({
 app.use(currentUser);
 
 // Routes
+app.use(cancelOrderRouter);
+app.use(indexOrderRouter);
+app.use(newOrderRouter);
+app.use(showOrderRouter);
 app.use(errorHandler);
 
 export { app };
