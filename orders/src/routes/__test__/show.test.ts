@@ -1,10 +1,12 @@
 import request from 'supertest';
 import { app } from '../../app';
 import { Ticket } from '../../models/ticket';
+import { generateMongooseObjID } from '../../test/utils';
 
 it('fetches the order', async () => {
   // Create a ticket
   const ticket = Ticket.build({
+    id: generateMongooseObjID(),
     title: 'concert',
     price: 20
   });
@@ -33,6 +35,7 @@ it('fetches the order', async () => {
 it('returns an error if the requested order belongs to another user', async () => {
   // Create a ticket
   const ticket = Ticket.build({
+    id: generateMongooseObjID(),
     title: 'concert',
     price: 20
   });
@@ -60,6 +63,7 @@ it('returns an error if the requested order belongs to another user', async () =
 it("returns an error if the requested order doesn't exist", async () => {
   // Create a ticket
   const ticket = Ticket.build({
+    id: generateMongooseObjID(),
     title: 'concert',
     price: 20
   });
@@ -87,6 +91,7 @@ it("returns an error if the requested order doesn't exist", async () => {
 it("returns an error if the request is not authorized", async () => {
   // Create a ticket
   const ticket = Ticket.build({
+    id: generateMongooseObjID(),
     title: 'concert',
     price: 20
   });

@@ -1,9 +1,11 @@
 import request from 'supertest';
 import { app } from '../../app';
 import { Ticket } from '../../models/ticket';
+import { generateMongooseObjID } from '../../test/utils';
 
 const buildTicket = async (title: string, price: number) => {
   const ticket = Ticket.build({
+    id: generateMongooseObjID(),
     title,
     price
   });
