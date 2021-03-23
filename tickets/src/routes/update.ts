@@ -1,6 +1,6 @@
 import express, { Request, Response } from 'express';
 import { body } from 'express-validator';
-import { validateRequest, NotAuthorizedError, NotFoundError, requireAuth } from '@vlakyi-org/common';
+import { validateRequest, NotAuthorizedError, NotFoundError, requireAuth, BadRequestError } from '@vlakyi-org/common';
 import { Ticket } from '../models/ticket';
 import { TicketUpdatedPublisher } from '../nats/publishers/ticket-updated-publisher';
 import { natsWrapper } from '../nats/nats-wrapper';
@@ -26,6 +26,10 @@ router.put('/api/tickets/:id', requireAuth,
 
     if (ticket.userId !== req.currentUser!.id) {
       throw new NotAuthorizedError();
+    }
+
+    if (ticket.orderId) {
+      throw new BadRequestError('Cannot edit a reserved ticket');
     }
 
     const { title, price } = req.body;
