@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 import { app } from './app';
 import { natsWrapper } from './nats/nats-wrapper';
-import { TicketCreatedListener } from './nats/events/listeners/ticket-created-listener';
-import { TicketUpdatedListener } from './nats/events/listeners/ticket-updated-listener';
+import { TicketCreatedListener } from './nats/listeners/ticket-created-listener';
+import { TicketUpdatedListener } from './nats/listeners/ticket-updated-listener';
 
 const start = async () => {
   // Checking env

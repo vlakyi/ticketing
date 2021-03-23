@@ -1,9 +1,9 @@
 import { TicketCreatedEvent } from '@vlakyi-org/common';
 import { TicketCreatedListener } from '../ticket-created-listener';
-import { natsWrapper } from '../../../nats-wrapper';
-import { generateMongooseObjID } from '../../../../test/utils';
+import { natsWrapper } from '../../nats-wrapper';
+import { generateMongooseObjID } from '../../../test/utils';
 import { Message } from 'node-nats-streaming';
-import { Ticket } from '../../../../models/ticket';
+import { Ticket } from '../../../models/ticket';
 
 const setup = () => {
   // create an instance of the listener

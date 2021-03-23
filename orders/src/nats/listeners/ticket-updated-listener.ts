@@ -1,7 +1,7 @@
 import { Message } from 'node-nats-streaming';
 import { Subjects, Listener, TicketUpdatedEvent } from '@vlakyi-org/common';
-import { Ticket } from '../../../models/ticket';
-import { QUEUE_GROUP_NAME } from '../../../constants/orders';
+import { Ticket } from '../../models/ticket';
+import { QUEUE_GROUP_NAME } from '../../constants/orders';
 
 export class TicketUpdatedListener extends Listener<TicketUpdatedEvent> {
   subject: Subjects.TicketUpdated = Subjects.TicketUpdated;
