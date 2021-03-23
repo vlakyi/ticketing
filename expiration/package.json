@@ -19,7 +19,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/bull": "^3.15.0",
-    "@vlakyi-org/common": "^1.0.13",
+    "@vlakyi-org/common": "^1.0.14",
     "bull": "^3.21.1",
     "node-nats-streaming": "^0.3.2",
     "ts-node-dev": "^1.1.1",
