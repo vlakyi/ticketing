@@ -1,7 +1,7 @@
 import express, { Request, Response } from 'express';
 import { NotAuthorizedError, NotFoundError, requireAuth, validateRequest } from '@vlakyi-org/common';
 import { Order, OrderStatus } from '../models/order';
-import { OrderCancelledPublisher } from '../nats/events/publishers/order-cancelled-publisher';
+import { OrderCancelledPublisher } from '../nats/publishers/order-cancelled-publisher';
 import { natsWrapper } from '../nats/nats-wrapper';
 import { param } from 'express-validator';
 import mongoose from 'mongoose';

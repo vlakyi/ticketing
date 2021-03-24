@@ -3,7 +3,7 @@ import { BadRequestError, NotFoundError, OrderStatus, requireAuth, validateReque
 import mongoose from 'mongoose';
 import { Ticket } from '../models/ticket';
 import { Order } from '../models/order';
-import { OrderCreatedPublisher } from '../nats/events/publishers/order-created-publisher';
+import { OrderCreatedPublisher } from '../nats/publishers/order-created-publisher';
 import { natsWrapper } from '../nats/nats-wrapper';
 
 import { EXPIRATION_WINDOW_SECONDS } from '../constants/orders';
