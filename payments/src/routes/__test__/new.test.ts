@@ -7,6 +7,7 @@ import { stripe } from '../../stripe';
 import { Payment } from '../../models/payment';
 
 jest.mock('../../stripe');
+jest.mock('../../nats/publishers/payment-created-publisher');
 
 it('returns a 404 when purchasing an order that does not exist', async () => {
   await request(app)
