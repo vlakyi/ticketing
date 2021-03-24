@@ -1,4 +1,5 @@
 import { natsWrapper } from './nats/nats-wrapper';
+import { OrderCreatedListener } from './nats/listeners/order-created-listener';
 
 const start = async () => {
   // Checking env
@@ -27,10 +28,10 @@ const start = async () => {
     process.on('SIGINT', () => natsWrapper.client.close());
     process.on('SIGTERM', () => natsWrapper.client.close());  // Doesn't work on windows 
 
+    new OrderCreatedListener(natsWrapper.client).listen();
   } catch (err) {
     console.error(err);
   }
-
 };
 
 start();
