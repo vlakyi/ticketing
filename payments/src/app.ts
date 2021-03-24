@@ -2,6 +2,7 @@ import express, { json } from 'express';
 import 'express-async-errors';
 
 // Routes
+import { createChargeRouter } from './routes/new';
 
 // Middlewares
 import { errorHandler, currentUser } from '@vlakyi-org/common';
@@ -20,6 +21,7 @@ app.use(cookieSession({
 app.use(currentUser);
 
 // Routes
+app.use(createChargeRouter);
 app.use(errorHandler);
 
 export { app };
