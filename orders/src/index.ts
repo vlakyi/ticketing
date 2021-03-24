@@ -3,6 +3,7 @@ import { app } from './app';
 import { natsWrapper } from './nats/nats-wrapper';
 import { TicketCreatedListener } from './nats/listeners/ticket-created-listener';
 import { TicketUpdatedListener } from './nats/listeners/ticket-updated-listener';
+import { ExpirationCompleteListener } from './nats/listeners/expiration-complete-listener';
 
 const start = async () => {
   // Checking env
@@ -42,6 +43,7 @@ const start = async () => {
     // Adding NATS listeners
     new TicketCreatedListener(natsWrapper.client).listen();
     new TicketUpdatedListener(natsWrapper.client).listen();
+    new ExpirationCompleteListener(natsWrapper.client).listen();
 
     await mongoose.connect(MONGO_URI, {
       useNewUrlParser: true,
