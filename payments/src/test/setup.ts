@@ -6,7 +6,7 @@ import { generateMongooseObjID } from './utils';
 declare global {
   namespace NodeJS {
     interface Global {
-      signin (): string[];
+      signin (userId?: string): string[];
     }
   }
 }
@@ -43,10 +43,10 @@ afterAll(async () => {
 
 //  Creating global scope function
 
-global.signin = () => {
+global.signin = (id?: string) => {
   // Build a JWT  payload. {id, email}
   const payload = {
-    id: generateMongooseObjID(),
+    id: id || generateMongooseObjID(),
     email: 'test@test.com'
   };
 
