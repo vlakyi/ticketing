@@ -16,7 +16,6 @@ const LandingPage = ({ currentUser, tickets }) => {
     );
   });
 
-  console.log(tickets);
   return currentUser ? (
     <>
       <div className='d-flex justify-content-between mb-4 mt-4'>
